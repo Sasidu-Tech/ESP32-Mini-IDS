@@ -1,0 +1,264 @@
+ html += "<!DOCTYPE html>";
+  html += "<html>";
+  html += "<head>";
+
+  html += "<meta name='viewport' content='width=device-width, initial-scale=1'>";
+
+  html += "<meta http-equiv='refresh' content='10'>";
+
+  html += "<title>ESP32 Mini IDS</title>";
+
+
+  // ================================================
+  // CSS
+  // ================================================
+
+  html += "<style>";
+
+  html += "body{";
+  html += "font-family:Arial;";
+  html += "background:#f2f2f2;";
+  html += "margin:0;";
+  html += "padding:20px;";
+  html += "}";
+
+
+  html += ".container{";
+  html += "max-width:700px;";
+  html += "margin:auto;";
+  html += "}";
+
+
+  html += "h1{";
+  html += "text-align:center;";
+  html += "}";
+
+
+  html += ".card{";
+  html += "background:white;";
+  html += "padding:20px;";
+  html += "margin:15px 0;";
+  html += "border-radius:10px;";
+  html += "box-shadow:0 2px 8px rgba(0,0,0,0.15);";
+  html += "}";
+
+
+  html += ".status{";
+  html += "font-size:22px;";
+  html += "font-weight:bold;";
+  html += "}";
+
+
+  html += ".online{";
+  html += "color:green;";
+  html += "}";
+
+
+  html += ".offline{";
+  html += "color:red;";
+  html += "}";
+
+
+  html += ".alert{";
+  html += "background:#fff3cd;";
+  html += "padding:15px;";
+  html += "border-radius:8px;";
+  html += "}";
+
+
+  html += ".danger{";
+  html += "color:red;";
+  html += "font-weight:bold;";
+  html += "}";
+
+
+  html += "</style>";
+
+  html += "</head>";
+
+
+  // ================================================
+  // Body
+  // ================================================
+
+  html += "<body>";
+
+  html += "<div class='container'>";
+
+
+  html += "<h1>ESP32 MINI IDS</h1>";
+
+  html += "<p style='text-align:center;'>Network Intrusion Detection Monitor</p>";
+
+
+  // ================================================
+  // IDS Status
+  // ================================================
+
+  html += "<div class='card'>";
+
+  html += "<h2>IDS Status</h2>";
+
+  html += "<p class='status online'>MONITORING</p>";
+
+  html += "</div>";
+
+
+  // ================================================
+  // Wi-Fi Information
+  // ================================================
+
+  html += "<div class='card'>";
+
+  html += "<h2>Wi-Fi Information</h2>";
+
+
+  html += "<p><b>SSID:</b> ";
+  html += WiFi.SSID();
+  html += "</p>";
+
+
+  html += "<p><b>IP Address:</b> ";
+  html += WiFi.localIP().toString();
+  html += "</p>";
+
+
+  html += "<p><b>Gateway:</b> ";
+  html += WiFi.gatewayIP().toString();
+  html += "</p>";
+
+
+  html += "<p><b>Subnet Mask:</b> ";
+  html += WiFi.subnetMask().toString();
+  html += "</p>";
+
+
+  html += "<p><b>RSSI:</b> ";
+  html += String(WiFi.RSSI());
+  html += " dBm</p>";
+
+
+  html += "</div>";
+
+
+  // ================================================
+  // Network Status
+  // ================================================
+
+  html += "<div class='card'>";
+
+  html += "<h2>Network Status</h2>";
+
+
+  html += "<p><b>Wi-Fi:</b> ";
+
+  if (WiFi.status() == WL_CONNECTED) {
+    html += "<span class='online'>CONNECTED</span>";
+  }
+  else {
+    html += "<span class='offline'>DISCONNECTED</span>";
+  }
+
+  html += "</p>";
+
+
+  html += "<p><b>Gateway:</b> ";
+
+  if (gatewayOnline) {
+    html += "<span class='online'>ONLINE</span>";
+  }
+  else {
+    html += "<span class='offline'>OFFLINE</span>";
+  }
+
+  html += "</p>";
+
+
+  html += "<p><b>Internet:</b> ";
+
+  if (internetOnline) {
+    html += "<span class='online'>ONLINE</span>";
+  }
+  else {
+    html += "<span class='offline'>OFFLINE</span>";
+  }
+
+  html += "</p>";
+
+
+  html += "</div>";
+
+
+  // ================================================
+  // Device Information
+  // ================================================
+
+  html += "<div class='card'>";
+
+  html += "<h2>Device Monitoring</h2>";
+
+
+  html += "<p><b>Active Devices:</b> ";
+  html += String(activeDeviceCount);
+  html += "</p>";
+
+
+  html += "<p><b>Unknown Devices:</b> ";
+  html += String(unknownDeviceCount);
+  html += "</p>";
+
+
+  html += "<p><b>Last Unknown IP:</b> ";
+  html += lastUnknownIP;
+  html += "</p>";
+
+
+  html += "</div>";
+
+
+  // ================================================
+  // Security Alert
+  // ================================================
+
+  if (unknownDeviceCount > 0) {
+
+    html += "<div class='card alert'>";
+
+    html += "<h2>Security Alert</h2>";
+
+    html += "<p class='danger'>UNKNOWN DEVICE DETECTED</p>";
+
+    html += "<p><b>IP Address:</b> ";
+    html += lastUnknownIP;
+    html += "</p>";
+
+    html += "<p><b>Severity:</b> MEDIUM</p>";
+
+    html += "</div>";
+  }
+
+
+  else {
+
+    html += "<div class='card'>";
+
+    html += "<h2>Security Status</h2>";
+
+    html += "<p class='online'>No Unknown Devices Detected</p>";
+
+    html += "</div>";
+  }
+
+
+  // ================================================
+  // Footer
+  // ================================================
+
+  html += "<p style='text-align:center;'>ESP32 Mini IDS | Sasidu-Tech</p>";
+
+
+  html += "</div>";
+
+  html += "</body>";
+
+  html += "</html>";
