@@ -1,7 +1,7 @@
 # 🛡️ ESP32 MINI IDS
 ### Wi-Fi Network Monitoring & Unknown Device Detection
 
-![ESP32 Mini IDS](images/ESP32MiniIDS(20))
+![ESP32 Mini IDS](images/ESP32%20Mini%20IDS%20(20).jpeg)
 
 ESP32 MINI IDS is an embedded cybersecurity project designed to monitor a Wi-Fi network and identify potentially unknown or unauthorized devices.
 
