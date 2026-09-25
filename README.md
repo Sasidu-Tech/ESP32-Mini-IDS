@@ -1,6 +1,8 @@
 # 🛡️ ESP32 MINI IDS
 ### Wi-Fi Network Monitoring & Unknown Device Detection
 
+## 🎥 Demo
+
 [![Watch Demo on LinkedIn](https://img.shields.io/badge/Watch%20Demo-LinkedIn-blue?logo=linkedin)](https://lnkd.in/p/gjCx_XhW)
 
 
